@@ -1,0 +1,37 @@
+@import '../base/variables';
+@import '../base/mixins';
+
+*,
+body {
+  font-family: $font-family;
+}
+
+body {
+  color: $colorB;
+  background-color: $colorBg;
+}
+
+a {
+  color: $colorB;
+  border-bottom: 2px solid $colorB;
+}
+
+.o-site {
+  &__wrapper {}
+
+  &__img {
+    display: block;
+    width: 100%;
+  }
+
+  &__b {}
+  &__hr {}
+}
+
+
+.c-site {
+  &__h1 {}
+  &__badge {}
+  &__link {}
+  &__footer {}
+}
