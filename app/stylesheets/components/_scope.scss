@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+@import '../base/variables';
+@import '../base/mixins';
+
+.s-md {
+  p {
+    @extend %paras;
+  }
+
+  a {
+    @extend %links;
+  }
+}

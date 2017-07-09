@@ -64,7 +64,6 @@ figure {
  * 2. Show the overflow in Edge and IE.
  */
 hr {
-  -webkit-box-sizing: content-box;
   box-sizing: content-box;
   /* 1 */
   height: 0;
@@ -278,7 +277,6 @@ fieldset {
  *    `fieldset` elements in all browsers.
  */
 legend {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   color: inherit;
@@ -314,7 +312,6 @@ textarea {
  */
 [type="checkbox"],
 [type="radio"] {
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -394,7 +391,7 @@ template {
 
 ul li,
 p, em, div.description {
-  font-size: 13px;
+  font-size: 15px;
   font-style: normal; }
 
 p#project-count,
@@ -536,20 +533,28 @@ body.js-enabled div#media div.image {
   margin: 0; }
 
 .u-animate {
-  -webkit-transition: all .25s ease;
-  -o-transition: all .25s ease;
   transition: all .25s ease; }
 
 .u-animate-smooth {
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-perspective: 1000;
-          perspective: 1000; }
+  perspective: 1000; }
 
 .u-center-block {
   display: block;
   margin-left: auto;
   margin-right: auto; }
+
+.o-site__p, .s-md p {
+  margin: 0 0 5px; }
+
+.o-site__link, .s-md a {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #000; }
+  .o-site__link:hover, .s-md a:hover, .o-site__link:focus, .s-md a:focus, .o-site__link:active, .s-md a:active {
+    color: #000; }
 
 .o-site {
   color: #000;
@@ -571,22 +576,16 @@ body.js-enabled div#media div.image {
   .o-site__h1, .o-site__h2, .o-site__h3, .o-site__h4, .o-site__h5, .o-site__h6 {
     font-weight: normal; }
   .o-site__h1 {
-    font-size: 13px; }
+    font-size: 15px; }
   .o-site__h1 .o-site__b {
     font-weight: normal;
     text-transform: none;
     display: block;
     letter-spacing: 0; }
   .o-site__h2 {
-    font-size: 26px;
+    font-size: 28px;
     margin: 0;
     letter-spacing: .02em; }
-  .o-site__p {
-    margin: 0 0 5px; }
-  .o-site__link {
-    color: #000;
-    text-decoration: none;
-    border-bottom: 1px solid #000; }
   .o-site__hr {
     display: block;
     height: 0;

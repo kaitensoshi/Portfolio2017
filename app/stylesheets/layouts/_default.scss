@@ -8,6 +8,24 @@
 // Sitewide Styles
 //--------------------
 
+// Extends //
+
+%paras {
+  margin: 0 0 5px;
+}
+
+%links {
+  color: $colorB;
+  text-decoration: none;
+  border-bottom: 1px solid $colorB;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $colorB;
+  }
+}
+
 
 // Main //
 
@@ -52,7 +70,7 @@
   }
 
   &__h1 {
-    font-size: 13px;
+    font-size: 15px;
   }
 
   &__h1 &__b {
@@ -63,19 +81,17 @@
   }
 
   &__h2 {
-    font-size: 26px;
+    font-size: 28px;
     margin: 0;
     letter-spacing: .02em;
   }
 
   &__p {
-    margin: 0 0 5px;
+    @extend %paras;
   }
 
   &__link {
-    color: $colorB;
-    text-decoration: none;
-    border-bottom: 1px solid $colorB;
+    @extend %links;
   }
 
 

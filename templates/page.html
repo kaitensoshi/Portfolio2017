@@ -22,7 +22,9 @@
           <div class="o-site__desc-content description col six">
             <h2 class="o-site__h2 o-site__desc-title col six"><a class="o-site__link o-site__desc-link" href="{{ page.root_path }}">{{ page.title }}</a></h2>
             {% include 'partials/assets/images.html' %}
-            {{ page.content }}
+            <div class="s-md">
+              {{ page.content }}
+            </div>
             {% include 'partials/assets/pdfs.html' %}
           </div>
         </section>
