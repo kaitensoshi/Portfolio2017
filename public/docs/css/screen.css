@@ -620,6 +620,9 @@ body.js-enabled div#media div.image {
   font-size: .93em;
   letter-spacing: .08em; }
 
+.c-project .c-media__frame {
+  border-top: 1px solid #000; }
+
 .o-404 h1 {
   margin: 35px 0 6px;
   text-decoration: underline; }
@@ -629,6 +632,12 @@ body.js-enabled div#media div.image {
 
 .c-pg__imgs--prev, .c-pg__imgs--next, .c-pg__pages--prev, .c-pg__pages--next {
   margin: 0; }
+
+.c-media__frame {
+  padding-top: 16px;
+  padding-top: 1rem;
+  margin-top: 32px;
+  margin-top: 2rem; }
 
 
 

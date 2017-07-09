@@ -4,6 +4,11 @@
 @import '../base/mixins';
 
 .c-media {
+  &__frame {
+    padding-top: 1rem;
+    margin-top: 2rem;
+  }
+
   &--htm {}
 
 
@@ -14,7 +19,6 @@
 
 
   &--img {}
-  &__frame {}
   &__img {}
   &__desc {}
 

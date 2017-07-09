@@ -3,4 +3,8 @@
 @import '../base/variables';
 @import '../base/mixins';
 
-.c-project {}
+.c-project {
+  .c-media__frame {
+    border-top: 1px solid $colorB;
+  }
+}
