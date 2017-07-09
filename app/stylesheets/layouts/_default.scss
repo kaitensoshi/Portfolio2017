@@ -1,37 +1,150 @@
+@charset "UTF-8";
+
 @import '../base/variables';
 @import '../base/mixins';
 
-*,
-body {
-  font-family: $font-family;
-}
 
-body {
-  color: $colorB;
-  background-color: $colorBg;
-}
+//--------------------
+// Sitewide Styles
+//--------------------
 
-a {
-  color: $colorB;
-  border-bottom: 2px solid $colorB;
-}
+
+// Main //
 
 .o-site {
-  &__wrapper {}
+  color: $colorB;
+  font-family: $font-family;
+  line-height: 1.4;
+  text-align: center;
+  padding: 10px 0 40px;
+  background-color: $colorBg;
+
+
+
+  // Sections //
+
+  &__wrapper {
+    width: $widthMax;
+    text-align: left;
+    padding: 5px 20px;
+    margin: 0 auto;
+  }
+  
+  &__header,
+  &__footer {
+    @include clearfix;
+  }
+
+  &__nav {}
+  &__content {}
+
+
+
+  // Text //
+
+  &__h1,
+  &__h2,
+  &__h3,
+  &__h4,
+  &__h5,
+  &__h6 {
+    font-weight: normal;
+  }
+
+  &__h1 {
+    font-size: 13px;
+  }
+
+  &__h1 &__b {
+    font-weight: normal;
+    text-transform: none;
+    display: block;
+    letter-spacing: 0;
+  }
+
+  &__h2 {
+    font-size: 26px;
+    margin: 0;
+    letter-spacing: .02em;
+  }
+
+  &__p {
+    margin: 0 0 5px;
+  }
+
+  &__link {
+    color: $colorB;
+    text-decoration: none;
+    border-bottom: 1px solid $colorB;
+  }
+
+
+
+  // Text Modifiers //
+
+  &__b {}
+  &__em {}
+
+
+
+  // Elements //
+
+  &__hr {
+    display: block;
+    height: 0;
+    padding: 0;
+    margin: 0 0 30px;
+    overflow: hidden;
+    visibility: hidden;
+    @include clearfix;
+  }
 
   &__img {
     display: block;
     width: 100%;
   }
 
-  &__b {}
-  &__hr {}
+  &__desc {
+    &-content {}
+
+    &-date {
+      font-size: 11px;
+      letter-spacing: .03em;
+      text-align: right;
+      padding: 14px 20px 0 0;
+    }
+
+    &-title {}
+    &-link {}
+  }
+
+  &__pg {}
+  &__search {}
 }
 
 
-.c-site {
-  &__h1 {}
+
+// Header //
+
+.c-header {
   &__badge {}
-  &__link {}
-  &__footer {}
+
+}
+
+
+
+// Footer //
+
+.c-footer {
+  &__p {
+    margin: 0 0 0 260px;
+    display: inline;
+  }
+
+  &__rss {
+    margin: 0 0 0 6px;
+    padding: 1px 2px 0;
+    font-size: .93em;
+    letter-spacing: .08em;
+  }
 }

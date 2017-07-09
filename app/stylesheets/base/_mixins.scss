@@ -1,0 +1,266 @@
+@charset "UTF-8";
+
+//--------------------
+// Site Mixins
+//--------------------
+
+
+
+// Assists //
+
+@import 'components/map-functions';
+
+@mixin un-list($style: none) {
+  list-style-type: $style;
+  padding: 0;
+  margin: 0;
+}
+
+@mixin center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@function strip-units($val) {
+  @return $val / ($val * 0 + 1);
+}
+
+@function map-has-nested-keys($map, $keys...) {
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+  @return true;
+}
+
+
+
+// Unit Conversion //
+
+@function convert($value, $currentUnit, $convertUnit) {
+  $number: strip-units($value);
+  $em: strip-units($sizeFont);
+
+   @if $currentUnit == px {
+      @if $convertUnit == ems {
+        @return $number / $em + 0em;
+      } @else if $convertUnit == percent {
+        @return percentage($number / $em);
+      }
+
+   }@else if $currentUnit == ems {
+      @if $convertUnit == px {
+        @return round($number * $em + 0px);
+      } @else if $convertUnit == percent {
+        @return percentage($number);
+      }
+
+   }@else if $currentUnit == percent {
+      @if $convertUnit == px {
+        @return round($number * $em / 100 + 0px);
+      } @else if $convertUnit == ems {
+        @return $number / 100 + 0em;
+      }
+
+   }@else if $currentUnit == pts {
+      @if $convertUnit == px {
+        @return round($number * 1.3333 + 0px);
+      } @else if $convertUnit == ems {
+        @return $number / $em + 0em;
+      } @else if $convertUnit == percent {
+        @return percentage($number / $em)
+      }
+   }
+}
+
+
+
+// Calculations //
+
+@mixin calc-value($attr, $value) {
+  #{$attr}: unquote("calc(#{$value})");
+}
+
+
+
+// Appearance //
+
+@function tint($color, $percent) {
+  @return mix($hexW, $color, $percent);
+}
+
+@function shade($color, $percent) {
+  @return mix($hexB, $color, $percent);
+}
+
+@mixin opacity($value) {
+    $IEValue: $value * 100;
+     opacity: $value;
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")';
+      filter: alpha(opacity = $IEValue);
+}
+
+@mixin z-shadow($depth, $strength: 5) {
+  $grey-value: tint($hexB, (100% - $strength * 10%));
+  $type: '';
+
+  @if $depth == 0 {
+    @include box-shadow(none);
+  } @else {
+
+    @if $depth < 0 {
+      $type: 'inset';
+      $depth: abs($depth);
+    } @else if $depth > 0 {}
+
+    @include box-shadow(
+      #{$type} 0 #{floor($depth * $depth    )}px #{floor(($depth +  2) * ($depth +  2))}px 0 rgba($grey-value, .2),
+      #{$type} 0 #{floor($depth * $depth / 3)}px #{floor(($depth + .5) * ($depth + .5))}px 0 rgba($grey-value, ($depth * .08 + .04))
+    );
+
+    @include transition(
+      box-shadow .25s cubic-bezier(.4, 0, .2, 1)
+    );
+  }
+}
+
+
+
+// Positioning //
+
+@mixin clearfix {
+  &::before,
+  &::after {
+    content: '';
+    display: table;
+  }
+
+  &::after {
+    clear: both;
+  }
+}
+
+@mixin transform-smooth-2d {
+  @include transform(translateZ(0));
+}
+
+@mixin force-fullwidth {
+  width: 100vw;
+  @include calc-value(margin-left, '((100% - 100vw) / 2)');
+  @include calc-value(margin-right, '((100% - 100vw) / 2)');
+}
+
+@mixin force-fullwidth-padded {
+  @include force-fullwidth;
+  @include calc-value(padding-left, '((100vw - 100%) / 2)');
+  @include calc-value(padding-right, '((100vw - 100%) / 2)');
+}
+
+@mixin pos-align($position, $args) {
+  position: $position;
+  @each $o in top right bottom left {
+    $i: index($args, $o);
+    @if $i
+    and $i + 1 <= length($args)
+    and type-of(nth($args, $i + 1)) == number {
+      #{$o}: nth($args, $i + 1);
+    }
+  }
+}
+
+@mixin pos-align-absolute($args) {
+  @include pos-align(absolute, $args);
+}
+
+@mixin pos-align-center($pos, $xy: xy) {
+  @if $xy == xy {
+    @include pos-align($pos, top 50% left 50%);
+    @include transform(translate(-50% , -50%))
+  }
+  @if $xy == x {
+    @include pos-align($pos, left 50%);
+    @include transform(translateX(-50%));
+  }
+  @if $xy == y {
+    @include pos-align($pos, top 50%);
+    @include transform(translateY(-50%));
+  }
+}
+
+
+
+// Text //
+
+@import 'components/modular-scale';
+
+@mixin text-size($val, $scale: $minor-second, $delta: 1, $convert: false) {
+  $size:   modular-scale($val, $sizeFont_em, $scale);
+  $size_m: modular-scale(($val + $delta), $sizeFont_em, $scale);
+
+  @if $convert == true {
+    font-size: convert($size, ems, px);
+
+    @include respond-to(notmobile) {
+      font-size: convert($size_m, ems, px);
+    }
+  } @else {
+    font-size: $size;
+
+    @include respond-to(notmobile) {
+      font-size: $size_m;
+    }
+  }
+}
+
+@mixin text-ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin text-word-wrap {
+   overflow-wrap: break-word;
+       word-wrap: break-word;
+      word-break: break-word;
+}
+
+@mixin text-hyphens {
+          hyphens: auto;
+}
+
+
+
+// Events //
+
+@import 'components/link-states';
+
+@mixin disable-event($disable: pointer) {
+  @if $disable == touch {
+  } @else {
+    pointer-events: none;
+  }
+  @if $disable == pointer {
+  } @else {
+    touch-callout: none;
+      user-select: none;
+  }
+}
+
+@mixin no-underline {
+  text-decoration: none;
+  outline: none;
+
+  @include on-event(all) {
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+
+
+// Breakpoints //
+
+@import 'components/mq';

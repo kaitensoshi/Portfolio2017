@@ -1,0 +1,3 @@
+{% for sibling in page.next_sibling %}
+  <p class="c-pg__pages--next"><a class="o-site__link c-pg__link" href="{{ sibling.url }}">Next project</a>: &rarr; {{ sibling.title }}</p>
+{% endfor %}

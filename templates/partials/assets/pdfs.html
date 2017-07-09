@@ -1,7 +1,10 @@
 {% if page.pdf %}
-  <p>
-    <br><b>PDFS</b><br>
+  <div class="c-media__frame c-media--pdf">
+    <br/>
+    <b class="o-site__b c-media__title">PDFS</b>
+    <br/>
     {% for pdf in page.pdf %}
-      <p><a href="{{ pdf.url }}">{{ pdf.name }}</a></p>
+      <p class="c-media__line"><a class="o-site__link c-media__link" href="{{ pdf.url }}">{{ pdf.name }}</a></p>
     {% endfor %}
+  </div>
 {% endif %}

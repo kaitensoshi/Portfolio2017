@@ -1,3 +1,11 @@
+@charset "UTF-8";
+
 @import '../base/variables';
 @import '../base/mixins';
 
+.c-search {
+  &__input {}
+  &__link {}
+  &__title {}
+  &__match {}
+}

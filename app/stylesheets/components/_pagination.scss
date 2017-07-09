@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+@import '../base/variables';
+@import '../base/mixins';
+
+.c-pg {
+  &__count {}
+  &__value {}
+
+  &__imgs,
+  &__pages {
+    &--prev,
+    &--next {
+      margin: 0;
+    }
+  }
+
+  &__link {}
+}

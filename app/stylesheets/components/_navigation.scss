@@ -1,3 +1,19 @@
+@charset "UTF-8";
+
 @import '../base/variables';
 @import '../base/mixins';
 
+.c-navmenu {
+  &__parent {}
+  &__child {}
+  &__item {}
+  &__link {}
+}
+
+.c-navcat {
+  &__item {}
+  &__date {}
+  &__title {}
+  &__thumb {}
+  &__link {}
+}

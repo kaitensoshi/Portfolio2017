@@ -1,14 +1,14 @@
 {% for child in page.root %}
   {% if child.children %}
-    <ul class="projects">
+    <ul class="c-navcat projects">
     {% for child in child.children %}
-      <li class="col seven {{ child.id }}">
-        <p class="date col one">{{ child.date | date("Y, M-") }}</p>
-        <h2 class="col five">
+      <li class="c-navcat__item col seven {{ child.id }}">
+        <p class="o-site__p o-site__desc-date c-navcat__date col one">{{ child.date | date("Y, M-") }}</p>
+        <h2 class="o-site__h2 c-navcat__title col five">
           {% if child.thumb %}
-            <img src="{{ child.thumb.url }}" width="{{ child.thumb.width }}" height="{{ child.thumb.height }}" class="project-thumb" alt="">
+            <img src="{{ child.thumb.url }}" class="o-site__img c-navcat__thumb project-thumb" alt="">
           {% endif %}
-          <a href="{{ child.url }}">{{ child.title }}</a>
+          <a class="o-site__link c-navcat__link" href="{{ child.url }}">{{ child.title }}</a>
         </h2>
       </li>
     {% endfor %}

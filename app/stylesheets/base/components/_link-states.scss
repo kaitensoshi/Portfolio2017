@@ -1,0 +1,106 @@
+@charset "UTF-8";
+
+// A Sass mixin for quickly setting link states
+// by Kristian Dalgard
+// https://gist.github.com/dalgard/9078463
+// https://twitter.com/dalgrd
+
+@mixin link-states(
+  $properties,
+  $values,
+  $states-values: $values,
+  $active-values: $states-values,
+  $focus-values: $states-values) {
+
+  @if length($properties) > 1 {
+    @for $i from 2 to length($properties) + 1 {
+      @if length($values) < $i { $values: append($values, nth($values, length($values))); }
+      @if length($states-values) < $i { $states-values: append($states-values, nth($states-values, length($states-values))); }
+      @if length($active-values) < $i { $active-values: append($active-values, nth($active-values, length($active-values))); }
+      @if length($focus-values) < $i { $focus-values: append($focus-values, nth($focus-values, length($focus-values))); }
+    }
+  }
+
+  $prop-val-list: zip(
+    $properties,
+    $values,
+    $states-values,
+    $active-values,
+    $focus-values
+  );
+
+  $states-sel: unquote('&:hover');
+  $active-sel: unquote('&:active');
+  $focus-sel: unquote('&:focus');
+
+  @if $active-values == $states-values {
+    $states-sel: append($states-sel, $active-sel, comma);
+    $active-sel: null;
+  }
+  @if $focus-values == $states-values {
+    $states-sel: append($states-sel, $focus-sel, comma);
+    $focus-sel: null;
+  }
+
+  @each $prop-val in $prop-val-list {
+    $property: nth($prop-val, 1);
+    $value: nth($prop-val, 2);
+
+    #{$property}: $value;
+  }
+
+  #{$states-sel} {
+    @each $prop-val in $prop-val-list {
+      $property: nth($prop-val, 1);
+      $value: nth($prop-val, 2);
+      $states-value: nth($prop-val, 3);
+
+      @if type-of($value) == 'color' {
+        @if type-of($states-value) == 'number' and unit($states-value) == '%' {
+          @if $states-value < 0% { $states-value: shade($value, $states-value * -1);
+          } @else { $states-value: tint($value, $states-value); }
+        }
+      }
+
+      #{$property}: $states-value;
+    }
+  }
+
+  @if $active-sel {
+    #{$active-sel} {
+      @each $prop-val in $prop-val-list {
+        $property: nth($prop-val, 1);
+        $value: nth($prop-val, 2);
+        $active-value: nth($prop-val, 4);
+
+        @if type-of($value) == 'color' {
+          @if type-of($active-value) == 'number' and unit($active-value) == '%' {
+            @if $active-value < 0% { $active-value: shade($value, $active-value * -1);
+            } @else { $active-value: tint($value, $active-value); }
+          }
+        }
+
+        #{$property}: $active-value;
+      }
+    }
+  }
+
+  @if $focus-sel {
+    #{$focus-sel} {
+      @each $prop-val in $prop-val-list {
+        $property: nth($prop-val, 1);
+        $value: nth($prop-val, 2);
+        $focus-value: nth($prop-val, 5);
+
+        @if type-of($value) == 'color' {
+          @if type-of($focus-value) == 'number' and unit($focus-value) == '%' {
+            @if $focus-value < 0% { $focus-value: shade($value, $focus-value * -1);
+            } @else { $focus-value: tint($value, $focus-value); }
+          }
+        }
+
+        #{$property}: $focus-value;
+      }
+    }
+  }
+}

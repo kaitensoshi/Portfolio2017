@@ -1,12 +1,27 @@
+@charset "UTF-8";
+
+
+// Import Normalize
+@import 'base/components/normalize';
+
+
+// Import Stacey default styles
 @import 'stacey';
 
+
+// Import general helpers
+@import 'base/helpers';
+
+
+// Import layout styles
 @import 'layouts/default',
         'layouts/project',
         'layouts/page',
         'layouts/search',
         'layouts/404';
 
+
+// Import component styles
 @import 'components/navigation',
-        'components/prev_next',
-        'components/assets',
-        'components/feed';
+        'components/pagination',
+        'components/assets';

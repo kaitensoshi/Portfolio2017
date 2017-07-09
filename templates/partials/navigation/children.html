@@ -1,8 +1,8 @@
 {% if page.children %}
-  <ol class="children">
+  <ol class="c-navmenu__child children">
     {% for child in page.children %}
-      <li>
-        <a href="{{ child.url }}">{{ child.page_name }}</a>
+      <li class="c-navmenu__item">
+        <a class="o-site__link c-navmenu__link" href="{{ child.url }}">{{ child.page_name }}</a>
         {% include 'partials/navigation/children.html' with { 'page' : child } %}
       </li>
     {% endfor %}

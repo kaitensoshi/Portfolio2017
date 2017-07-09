@@ -1,7 +1,7 @@
-<ul id="navigation" class="col two">
+<ul id="navigation" class="c-navmenu__parent col two">
   {% for child in page.root %}
-    <li>
-      <a href="{{ child.url }}">{{ child.title }}</a>
+    <li class="c-navmenu__item">
+      <a class="o-site__link c-navmenu__link" href="{{ child.url }}">{{ child.title }}</a>
       {% include 'partials/navigation/children.html' with { 'page' : child } %}
     </li>
   {% endfor %}
