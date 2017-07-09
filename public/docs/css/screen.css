@@ -391,7 +391,7 @@ template {
 
 ul li,
 p, em, div.description {
-  font-size: 15px;
+  font-size: 13px;
   font-style: normal; }
 
 p#project-count,
@@ -558,7 +558,7 @@ body.js-enabled div#media div.image {
 
 .o-site {
   color: #000;
-  font-family: "Crimson Text", serif;
+  font-family: "Open Sans", sans-serif;
   line-height: 1.4;
   text-align: center;
   padding: 10px 0 40px;
@@ -574,18 +574,22 @@ body.js-enabled div#media div.image {
   .o-site__header::after, .o-site__footer::after {
     clear: both; }
   .o-site__h1, .o-site__h2, .o-site__h3, .o-site__h4, .o-site__h5, .o-site__h6 {
-    font-weight: normal; }
+    font-family: "Dosis", sans-serif;
+    font-weight: 700; }
   .o-site__h1 {
-    font-size: 15px; }
+    font-size: 13px; }
   .o-site__h1 .o-site__b {
-    font-weight: normal;
+    font-weight: 700;
     text-transform: none;
     display: block;
     letter-spacing: 0; }
   .o-site__h2 {
     font-size: 28px;
+    font-weight: 700;
     margin: 0;
     letter-spacing: .02em; }
+  .o-site__b, .o-site__em {
+    font-weight: 700; }
   .o-site__hr {
     display: block;
     height: 0;

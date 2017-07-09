@@ -31,7 +31,7 @@
 
 .o-site {
   color: $colorB;
-  font-family: $font-family;
+  font-family: $font-body;
   line-height: 1.4;
   text-align: center;
   padding: 10px 0 40px;
@@ -66,15 +66,16 @@
   &__h4,
   &__h5,
   &__h6 {
-    font-weight: normal;
+    font-family: $font-display;
+    font-weight: 700;
   }
 
   &__h1 {
-    font-size: 15px;
+    font-size: 13px;
   }
 
   &__h1 &__b {
-    font-weight: normal;
+    font-weight: 700;
     text-transform: none;
     display: block;
     letter-spacing: 0;
@@ -82,6 +83,7 @@
 
   &__h2 {
     font-size: 28px;
+    font-weight: 700;
     margin: 0;
     letter-spacing: .02em;
   }
@@ -98,8 +100,10 @@
 
   // Text Modifiers //
 
-  &__b {}
-  &__em {}
+  &__b,
+  &__em {
+    font-weight: 700;
+  }
 
 
 
